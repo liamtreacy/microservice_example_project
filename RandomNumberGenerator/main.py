@@ -1,4 +1,6 @@
 import sys
+import time
+
 import pika
 
 from rng import generate_random_number
@@ -9,14 +11,19 @@ if __name__ == '__main__':
 
     channel.queue_declare(queue='test_rng')
 
-    lower = sys.argv[1]
-    upper = sys.argv[2]
-    rnd = generate_random_number(int(lower), int(upper))
+    lower = int(sys.argv[1])
+    upper = int(sys.argv[2])
+    loop_interval_secs = int(sys.argv[3])
 
-    channel.basic_publish(exchange='',
+    while True:
+        rnd = generate_random_number(lower, upper)
+        rnd = str(rnd)
+
+        channel.basic_publish(exchange='',
                           routing_key='test_rng',
-                          body=str(rnd))
-    print(" [x] Sent " + str(rnd))
+                          body=rnd)
+        print(" [x] Sent " + rnd)
+        time.sleep(loop_interval_secs)
 
     connection.close()
 
