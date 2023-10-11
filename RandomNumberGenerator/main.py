@@ -1,16 +1,22 @@
-# This is a sample Python script.
+import sys
+import pika
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+from rng import generate_random_number
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    channel.queue_declare(queue='test_rng')
+
+    lower = sys.argv[1]
+    upper = sys.argv[2]
+    rnd = generate_random_number(int(lower), int(upper))
+
+    channel.basic_publish(exchange='',
+                          routing_key='test_rng',
+                          body=str(rnd))
+    print(" [x] Sent " + str(rnd))
+
+    connection.close()
+
