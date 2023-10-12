@@ -50,6 +50,16 @@ services:
     networks:
       - network
 
+  mysql:
+    image: mysql:latest
+    volumes:
+      - number-info-data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: number_info
+
+volumes:
+  number-info-data:
 
 networks:
   network: {}

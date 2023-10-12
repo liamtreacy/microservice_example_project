@@ -2,17 +2,35 @@ Progress (DBS):
 
 Need
 - program to read rabbitmq messages - done
-- dockerise it
-- mysql db in docker
+- dockerise it - done
+- mysql db in docker - done
 - program to connect to it
 - docker the program to connect to it
 - merge the two programs
 
 
+Ran
+docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8 
 
+Then
+docker exec -it some-mysql bash
 
+https://learn.microsoft.com/en-us/visualstudio/docker/tutorials/tutorial-multi-container-app-mysql
 
+Got the mysql running from docker-compose
 
+Logged into it (through exec on docker desktop)
+mysql -p
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| number_info        |
+| performance_schema |
+| sys                |
++--------------------+
 =================================
 Progress (RNG):
 
