@@ -1,24 +1,7 @@
-Need:
-
-RNG
-RabbitMq docker
-
-
-DB Service
-MySQL docker
-
-
-Display Service
-
-
-Frontend
-
-
-Docker compose to handle it all
 
 
 =================================
-Progress:
+Progress (RNG):
 
 Have a python RNG.
 Need to get it to produce rabbit messages
