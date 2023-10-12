@@ -1,2 +1,7 @@
-RandomNumberGenerator/.idea/
-RandomNumberGenerator/venv/
+**/.idea/
+**/venv/
+**/obj/
+**/bin/
+**/.vscode
+*.exe
+*.dll
