@@ -2,7 +2,7 @@
 
 This project sends a rabbitmq message containing a random number at regaular intervals.
 
-The interval currently is 5 seconds. And the random number is in a range between 1 and 100.
+The interval at which these are sent, and the lower and upper bounds for the random number generation are defined in the `Dockerfile`
 
 ## Requirements
 
@@ -25,6 +25,5 @@ The rng container will need to restarted a few seconds after the rabbitmq contai
 
 ## TODO
 
-- Move the interval period, upper and lower bounds, exchange names etc to be docker supplied and configurable
 
   

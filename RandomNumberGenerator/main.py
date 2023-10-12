@@ -1,20 +1,22 @@
 import sys
 import time
+import os
 
 import pika
 
 from rng import generate_random_number
 
+
 if __name__ == '__main__':
+
+    lower = int(os.environ['LOWER_BOUND'])
+    upper = int(os.environ['UPPER_BOUND'])
+    loop_interval_secs = int(os.environ['DELAY_LOOP_SECONDS'])
 
     connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
     channel = connection.channel()
 
     channel.queue_declare(queue='test_rng')
-
-    lower = int(sys.argv[1])
-    upper = int(sys.argv[2])
-    loop_interval_secs = int(sys.argv[3])
 
     while True:
         rnd = generate_random_number(lower, upper)
