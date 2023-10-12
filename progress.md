@@ -64,6 +64,8 @@ OK! Lots of problem BUT
 - have seen random number messages appear in the ui
 - woohoo!
 
+"The host parameter is set to 'rabbitmq', which is the name of the RabbitMQ container. This name is used because Docker automatically creates a DNS entry for each container that matches its name."
+
 
 
 ===
