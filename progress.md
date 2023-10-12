@@ -4,9 +4,14 @@ Need
 - program to read rabbitmq messages - done
 - dockerise it - done
 - mysql db in docker - done
+- mongo in docker
 - program to connect to it
 - docker the program to connect to it
 - merge the two programs
+
+
+
+Decided to go against mysql, just use mongo for now
 
 
 Ran

@@ -1,23 +1,11 @@
-# Docker Compose description of the combined application.
-#
-# 'docker-compose up' will run this.
 version: '3'  # requires Docker Compose 1.13 or later
 
-# This section describes the various containers (services).
+
 services:
   
   rabbitmq:
-    # There is a prebuilt RabbitMQ image; see
-    # https://hub.docker.com/_/rabbitmq/ for details.
-    # This variant is built on Alpine Linux (it's smaller) and includes
-    # the management UI.
     image: 'rabbitmq:3.6-management-alpine'
 
-
-    # These ports are exposed on the host; 'hostport:containerport'.
-    # You could connect to this server from outside with the *host's*
-    # DNS name or IP address and port 5672 (the left-hand side of the
-    # colon).
     ports:
       # The standard AMQP protocol port
       - '5672:5672'
@@ -55,8 +43,18 @@ services:
     volumes:
       - number-info-data:/var/lib/mysql
     environment: 
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: 123
       MYSQL_DATABASE: number_info
+      MYSQL_USER: liam
+      MYSQL_PASSWORD: 123
+
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    
+    networks:
+      - network
 
 volumes:
   number-info-data:
