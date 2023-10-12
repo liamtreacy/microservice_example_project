@@ -53,5 +53,18 @@ Have that image run and see output on rabbit - half done...
 
 Problem is that the rng docker container cannot connect to the rabbitmq container... think I need docker compose?
 
+Tried to copy this, but it fails. Due to a heartbeat issue maybe? https://github.com/dmaze/docker-rabbitmq-example/tree/master
+
+
+OK! Lots of problem BUT
+
+- docker-compose brings up the two containers.
+- the rng one fails
+- if wait a bit and manually restart, it's all good!
+- have seen random number messages appear in the ui
+- woohoo!
+
+
+
 ===
 Maybe it should be a lottery system? Could generate six number, puts the message out with them and the time?

@@ -2,11 +2,19 @@ import sys
 import time
 
 import pika
+import os
 
 from rng import generate_random_number
 
 if __name__ == '__main__':
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+
+    # Get the location of the AMQP broker (RabbitMQ server) from
+    # an environment variable
+    amqp_url = os.environ['AMQP_URL']
+    print('URL: %s' % (amqp_url,))
+
+    #connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
     channel = connection.channel()
 
     channel.queue_declare(queue='test_rng')
