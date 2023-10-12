@@ -46,7 +46,7 @@ To loop the python rng, sending messages each loop
 
 To dockerise the python program - done
 Someway to run test then build image - done
-Have that image run and see output on rabbit - half done...
+Have that image run and see output on rabbit - done
 
 
 
@@ -65,6 +65,15 @@ OK! Lots of problem BUT
 - woohoo!
 
 "The host parameter is set to 'rabbitmq', which is the name of the RabbitMQ container. This name is used because Docker automatically creates a DNS entry for each container that matches its name."
+
+
+TODO::
+
+1 - Investigate the start-up issue of the docker containers. Can RNG hold off until its properly connected?
+2 - Tidy up of the python
+3 - Do up proper progress notes
+4 - Docker compose up and del commands/helpers/a proper readme instructions
+5 - Longer term things (e.g. a proper build chain)
 
 
 
