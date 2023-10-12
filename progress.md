@@ -70,7 +70,7 @@ OK! Lots of problem BUT
 TODO::
 
 1 - Investigate the start-up issue of the docker containers. Can RNG hold off until its properly connected?
-2 - Tidy up of the python
+2 - Tidy up of the python/Move args to be docker environment supplied.
 3 - Do up proper progress notes
 4 - Docker compose up and del commands/helpers/a proper readme instructions
 5 - Longer term things (e.g. a proper build chain)
