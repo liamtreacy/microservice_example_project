@@ -2,7 +2,10 @@
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-var factory = new ConnectionFactory { HostName = "localhost" };
+Thread.Sleep(15000);
+
+var factory = new ConnectionFactory { HostName = "rabbitmq",
+    DispatchConsumersAsync = true  };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
@@ -16,8 +19,8 @@ channel.QueueDeclare(queue: queue,
 
 Console.WriteLine(" [*] Waiting for messages.");
 
-var consumer = new EventingBasicConsumer(channel);
-consumer.Received += (model, ea) =>
+var consumer = new AsyncEventingBasicConsumer(channel);
+consumer.Received += async (model, ea) =>
 {
     var body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
@@ -27,5 +30,7 @@ channel.BasicConsume(queue: queue,
                      autoAck: true,
                      consumer: consumer);
 
-Console.WriteLine(" Press [enter] to exit.");
-Console.ReadLine();
+// TODO fix this
+while (channel.IsOpen) {
+    Thread.Sleep(1);
+}

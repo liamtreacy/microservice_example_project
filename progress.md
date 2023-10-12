@@ -1,3 +1,16 @@
+Progress (DBS):
+
+Need
+- program to read rabbitmq messages - done
+- dockerise it
+- mysql db in docker
+- program to connect to it
+- docker the program to connect to it
+- merge the two programs
+
+
+
+
 
 
 =================================

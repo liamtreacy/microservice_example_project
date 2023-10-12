@@ -33,13 +33,7 @@ services:
       - network
 
   randomnumbergenerator:
-    # If needed, Docker Compose will automatically run consumer/Dockerfile.
     build: randomnumbergenerator
-
-    # Environment variables:
-    environment:
-      #AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5&heartbeat=0'
-      AMQP_URL: 'amqp://guest:guest@rabbitmq:5672'
 
     depends_on:
       - rabbitmq
@@ -47,8 +41,15 @@ services:
     networks:
       - network
 
+  reader:
+    build:
+      context: ./DBService/Reader/
+
+    depends_on:
+      - rabbitmq
+    networks:
+      - network
+
 
 networks:
-  # Declare our private network.  We must declare one for the magic
-  # Docker DNS to work, but otherwise its default settings are fine.
   network: {}
