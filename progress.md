@@ -75,7 +75,7 @@ TODO::
 4 - Docker compose up and del commands/helpers/a proper readme instructions
 5 - Longer term things (e.g. a proper build chain)
 
-
+docker rmi -f $(docker images -aq)
 
 ===
 Maybe it should be a lottery system? Could generate six number, puts the message out with them and the time?

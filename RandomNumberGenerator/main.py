@@ -14,6 +14,10 @@ if __name__ == '__main__':
     loop_interval_secs = int(os.environ['DELAY_LOOP_SECONDS'])
     publish_queue = os.environ['PUBLISH_QUEUE']
 
+    # Sleep until the rabbitmq is up and running
+    #TODO replace this with a proper callback guard
+    time.sleep(20)
+
     connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
     channel = connection.channel()
 
