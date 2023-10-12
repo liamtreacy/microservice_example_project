@@ -44,11 +44,14 @@ The python program reading command line args to generate a random number in a ra
 Now need:
 To loop the python rng, sending messages each loop
 
-To dockerise the python program 
-Have that image run and see output on rabbit
-Someway to run test then build image
+To dockerise the python program - done
+Someway to run test then build image - done
+Have that image run and see output on rabbit - half done...
 
 
+
+
+Problem is that the rng docker container cannot connect to the rabbitmq container... think I need docker compose?
 
 ===
 Maybe it should be a lottery system? Could generate six number, puts the message out with them and the time?

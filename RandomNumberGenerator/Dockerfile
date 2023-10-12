@@ -10,4 +10,4 @@ RUN pip3 install -r requirements.txt
 COPY . .
 
 # lower, upper, interval(seconds)
-CMD [ "python3", "1", "100", "5"]
+CMD [ "python3", "main.py", "1", "100", "5"]
