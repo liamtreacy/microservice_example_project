@@ -5,8 +5,8 @@ Need
 - dockerise it - done
 - mysql db in docker - done
 - mongo in docker - done
-- program to connect to it
-- docker the program to connect to it
+- program to connect to it - done
+- docker the program to connect to it - done
 - merge the two programs
 
 
