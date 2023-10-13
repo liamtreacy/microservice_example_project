@@ -5,15 +5,25 @@ using MongoDB.Bson;
 public class DbConnector : IDbConnector
 {
     private readonly ILogger<MessageReceiver> _logger;
+    private DbUpdater _dbUpdater;
 
     public DbConnector(ILogger<MessageReceiver> logger)
     {
         _logger = logger;
+        _dbUpdater = new DbUpdater("mongodb://admin:pass@localhost:27017", "test", "numbers");
     }
 
     public async Task UpdateDb(int num)
     {
+            var document = new BsonDocument
+            {
+                { "latest", num }
+            };
+            await _dbUpdater.InsertDocumentAsync(document);
+
+            _logger.LogInformation("Updated Mongo!", DateTime.UtcNow.ToLongTimeString());
         // Connect
+        /*
         string connectionString = "mongodb://admin:pass@localhost:27017";
         MongoClient client = new MongoClient(connectionString);
         IMongoDatabase database = client.GetDatabase("rng_stats");
@@ -35,5 +45,6 @@ _logger.LogInformation("..2");
             }
         _logger.LogInformation("Updated Mongo!", DateTime.UtcNow.ToLongTimeString());
         // Update
+        */
     }
 }

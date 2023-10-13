@@ -44,8 +44,12 @@ logger.LogInformation("AWAKE NOW", DateTime.UtcNow.ToLongTimeString());
             var message = Encoding.UTF8.GetString(body);
             latestNumber = Int32.Parse(message);
 
+
+
+
+
             // TODO why is this not working?
-            dbConnector.UpdateDb(latestNumber).GetAwaiter().GetResult();
+            dbConnector.UpdateDb(latestNumber);
             logger.LogInformation($"RECEIVED MESSAGE {message}", DateTime.UtcNow.ToLongTimeString());
             Console.WriteLine($" [x] Received {message}");
         };
