@@ -29,9 +29,12 @@ services:
     networks:
       - network
 
-  reader:
+  dbservice:
     build:
-      context: ./DBService/Reader/
+      context: ./DBService/DBService
+
+    ports:
+      - 8080:80
 
     depends_on:
       - rabbitmq

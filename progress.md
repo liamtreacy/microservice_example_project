@@ -12,7 +12,7 @@ Need
         - an asp net project - done
         - docker that - done ( docker build -t dbservice .     and then docker run -ti --rm -p 8080:80 dbservice)
         - can Get the latest number from it - done
-        - add rabbitreader as a service
+        - add rabbitreader as a service - done
         - add mongo connector to update the db with it
         - check works running in docker
 
