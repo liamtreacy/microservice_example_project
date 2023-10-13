@@ -9,7 +9,12 @@ Need
 - docker the program to connect to it - done
 - merge the two programs
 
-
+        - an asp net project - done
+        - docker that - done ( docker build -t dbservice .     and then docker run -ti --rm -p 8080:80 dbservice)
+        - add rabbitreader as a service
+        - can Get the latest number from it
+        - add mongo connector to update the db with it
+        - check works running in docker
 
 
 Have mongo running. Once compose is up
