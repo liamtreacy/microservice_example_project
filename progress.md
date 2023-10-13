@@ -4,11 +4,19 @@ Need
 - program to read rabbitmq messages - done
 - dockerise it - done
 - mysql db in docker - done
-- mongo in docker
+- mongo in docker - done
 - program to connect to it
 - docker the program to connect to it
 - merge the two programs
 
+
+
+
+Have mongo running. Once compose is up
+Go to http://localhost:8081/
+admin pass
+
+Don't know why the credentials don't work? According to the mongo-express documentation, the default username and password for the web-based admin interface are admin and pass, respectively 1. It’s possible that these are the credentials you need to use to log in.
 
 
 Decided to go against mysql, just use mongo for now
