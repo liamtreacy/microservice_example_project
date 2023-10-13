@@ -18,6 +18,21 @@ Need
         - update mongodb from c#
 
 
+Think it might be something with permissions on the mongo side
+The stuff with mongo has been exhausting. Problem: the c# code connects but nothing happens when attempted to update the db. No error or anything.
+
+Connect to the mongo container
+
+mongosh -u root -p example
+
+show users
+- was empty so attempted to add stuff
+
+
+
+
+
+
 Have mongo running. Once compose is up
 Go to http://localhost:8081/
 admin pass

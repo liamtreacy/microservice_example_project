@@ -10,7 +10,7 @@ public class DbConnector : IDbConnector
     public DbConnector(ILogger<MessageReceiver> logger)
     {
         _logger = logger;
-        _dbUpdater = new DbUpdater("mongodb://admin:pass@localhost:27017", "test", "numbers");
+       // _dbUpdater = new DbUpdater("mongodb://admin:pass@localhost:27017", "test", "numbers");
     }
 
     public async Task UpdateDb(int num)
@@ -19,7 +19,7 @@ public class DbConnector : IDbConnector
             {
                 { "latest", num }
             };
-            await _dbUpdater.InsertDocumentAsync(document);
+            //await _dbUpdater.InsertDocumentAsync(document);
 
             _logger.LogInformation("Updated Mongo!", DateTime.UtcNow.ToLongTimeString());
         // Connect

@@ -17,18 +17,15 @@ public class MessageReceiver : IMessageReceiver
         var worker = new BackgroundWorker();
                 worker.DoWork += (s,e) => 
                 {
-       // Thread.Sleep(15000);
-logger.LogInformation("AWAKE NOW", DateTime.UtcNow.ToLongTimeString());
-        var factory = new ConnectionFactory { HostName = "rabbitmq",
-            DispatchConsumersAsync = true,
-            UseBackgroundThreadsForIO = true  };
-        //logger.LogInformation(" 1");  
+        
+        logger.LogInformation("AWAKE NOW", DateTime.UtcNow.ToLongTimeString());
+                var factory = new ConnectionFactory { HostName = "rabbitmq",
+                    DispatchConsumersAsync = true,
+                    UseBackgroundThreadsForIO = true  };
+
         using var connection = factory.CreateConnection();
-  //logger.LogInformation(" 2");  
         using var channel = connection.CreateModel();
-//logger.LogInformation(" 3");  
         var queue = "random_numbers_queue";
-//logger.LogInformation(" 4");  
         channel.QueueDeclare(queue: queue,
                             durable: false,
                             exclusive: false,
@@ -44,12 +41,12 @@ logger.LogInformation("AWAKE NOW", DateTime.UtcNow.ToLongTimeString());
             var message = Encoding.UTF8.GetString(body);
             latestNumber = Int32.Parse(message);
 
+            var task = Task.Run(() =>
+            {
+                var updater = new DbUpdater(_logger);
+                updater.insertNumber(latestNumber);
+            });
 
-
-
-
-            // TODO why is this not working?
-            dbConnector.UpdateDb(latestNumber);
             logger.LogInformation($"RECEIVED MESSAGE {message}", DateTime.UtcNow.ToLongTimeString());
             Console.WriteLine($" [x] Received {message}");
         };
@@ -57,13 +54,12 @@ logger.LogInformation("AWAKE NOW", DateTime.UtcNow.ToLongTimeString());
                             autoAck: true,
                             consumer: consumer);
                             
-         while(true)
-         {
+        while(true)
+        {
             Thread.Sleep(1000);
-         }      };
+        }      
+         };
         worker.RunWorkerAsync();
-
-
     }
     
     public int GetLatestReceivedNumber()
