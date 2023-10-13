@@ -1,4 +1,4 @@
 public interface IDbConnector
 {
-    void UpdateDb(int num);
+    public Task UpdateDb(int num);
 }

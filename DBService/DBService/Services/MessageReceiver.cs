@@ -17,7 +17,7 @@ public class MessageReceiver : IMessageReceiver
         var worker = new BackgroundWorker();
                 worker.DoWork += (s,e) => 
                 {
-        Thread.Sleep(15000);
+       // Thread.Sleep(15000);
 logger.LogInformation("AWAKE NOW", DateTime.UtcNow.ToLongTimeString());
         var factory = new ConnectionFactory { HostName = "rabbitmq",
             DispatchConsumersAsync = true,
@@ -43,7 +43,9 @@ logger.LogInformation("AWAKE NOW", DateTime.UtcNow.ToLongTimeString());
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
             latestNumber = Int32.Parse(message);
-            dbConnector.UpdateDb(latestNumber);
+
+            // TODO why is this not working?
+            dbConnector.UpdateDb(latestNumber).GetAwaiter().GetResult();
             logger.LogInformation($"RECEIVED MESSAGE {message}", DateTime.UtcNow.ToLongTimeString());
             Console.WriteLine($" [x] Received {message}");
         };
