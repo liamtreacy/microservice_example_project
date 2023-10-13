@@ -8,10 +8,12 @@ public class MessageReceiver : IMessageReceiver
 {
     private int latestNumber = -1;
     private readonly ILogger<MessageReceiver> _logger;
+    private readonly IDbConnector _dbConnector;
 
-    public MessageReceiver(ILogger<MessageReceiver> logger)
+    public MessageReceiver(ILogger<MessageReceiver> logger, IDbConnector dbConnector)
     {
         _logger = logger;
+        _dbConnector = dbConnector;
         var worker = new BackgroundWorker();
                 worker.DoWork += (s,e) => 
                 {
@@ -41,6 +43,7 @@ logger.LogInformation("AWAKE NOW", DateTime.UtcNow.ToLongTimeString());
             var body = ea.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
             latestNumber = Int32.Parse(message);
+            dbConnector.UpdateDb(latestNumber);
             logger.LogInformation($"RECEIVED MESSAGE {message}", DateTime.UtcNow.ToLongTimeString());
             Console.WriteLine($" [x] Received {message}");
         };

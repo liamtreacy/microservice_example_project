@@ -13,8 +13,9 @@ Need
         - docker that - done ( docker build -t dbservice .     and then docker run -ti --rm -p 8080:80 dbservice)
         - can Get the latest number from it - done
         - add rabbitreader as a service - done
-        - add mongo connector to update the db with it
-        - check works running in docker
+        - add mongo connector to update the db with it - done
+        - check works running in docker - done
+        - update mongodb from c#
 
 
 Have mongo running. Once compose is up
