@@ -1,5 +1,10 @@
 Progress (DBS):
 
+TODO
+
+Start a mongodb (without express) and an init file.
+Get it to work creating tables and users.
+
 Need
 - program to read rabbitmq messages - done
 - dockerise it - done
