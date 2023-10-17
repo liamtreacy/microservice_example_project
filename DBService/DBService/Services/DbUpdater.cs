@@ -9,8 +9,8 @@ public class DbUpdater
     public DbUpdater(ILogger<MessageReceiver> logger)
     {
         _logger = logger;
-        var client = new MongoClient("mongodb://myuser:mypass@localhost:27017");
-        var database = client.GetDatabase("test");
+        var client = new MongoClient("mongodb://pastime:pastime123@localhost:27017?authSource=pastime");
+        var database = client.GetDatabase("pastime");
         _collection = database.GetCollection<BsonDocument>("numbers");
         _logger.LogInformation($"End CONS", DateTime.UtcNow.ToLongTimeString());
     }
