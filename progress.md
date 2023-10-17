@@ -1,5 +1,7 @@
 Progress (DBS):
 
+Tried using (proven) init script. Updated user/pass.
+
 TODO
 
 Start a mongodb (without express) and an init file.
