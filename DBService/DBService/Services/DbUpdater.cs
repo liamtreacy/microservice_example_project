@@ -11,7 +11,7 @@ public class DbUpdater
         _logger = logger;
         var client = new MongoClient("mongodb://pastime:pastime123@localhost:27017?authSource=pastime");
         var database = client.GetDatabase("pastime");
-        _collection = database.GetCollection<BsonDocument>("numbers");
+        _collection = database.GetCollection<BsonDocument>("pastime");
         _logger.LogInformation($"End CONS", DateTime.UtcNow.ToLongTimeString());
     }
 
