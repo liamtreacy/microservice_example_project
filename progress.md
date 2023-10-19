@@ -1,11 +1,23 @@
 Progress (DBS):
 
+
+
+TODO 19/10
+
+- change the database name, user, password to something sensible
+- pass these into the programs via env var
+- try the other dotnet connector to see if it can update the db (throwaway work)
+
+
+
+
+
+
+
+
+==============
 Tried using (proven) init script. Updated user/pass.
 
-TODO
-
-Start a mongodb (without express) and an init file.
-Get it to work creating tables and users.
 
 Need
 - program to read rabbitmq messages - done
