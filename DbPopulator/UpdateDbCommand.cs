@@ -4,9 +4,16 @@ public class UpdateDbCommand
     public static string User;
     public static string Password;
 
-    public UpdateDbCommand(string message)
-    {}
+    private string message;
+
+    public UpdateDbCommand(string _message)
+    {
+        message = _message;
+    }
 
     public void Run()
-    {}
+    {
+        var p = new Printer();
+        p.Print($"LAMBDA: {message}");
+    }
 }
