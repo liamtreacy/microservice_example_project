@@ -1,4 +1,5 @@
 ﻿var p = new Printer();
+Thread.Sleep(15000); // TODO remove this. Needed now to handle rabbitmq startup time.
 p.Print("starting up");
 
 string default_msg_provider_host_name = "localhost";
