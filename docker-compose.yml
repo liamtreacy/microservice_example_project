@@ -48,6 +48,15 @@ services:
     networks:
       - network
 
+  latestresult:
+    build:
+      context: ./LatestResult/myapp
+
+    ports:
+      - '8080:8080'
+  
+    networks:
+      - network
 
   mongo:
    image: mongo
