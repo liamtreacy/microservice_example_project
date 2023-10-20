@@ -12,16 +12,20 @@ var db_conn = new MyDbConnection(GetEnvVarOrDefault("HOSTDB", default_db_host_na
                     GetEnvVarOrDefault("DBCOLLECTION", "my_collection"));
 
 // Establish rabbit connection
+p.Print("111111");
 var message_reader = new MessageReader(
             GetEnvVarOrDefault("HOSTMSG",default_msg_provider_host_name), 
                             (string s) => {
                                 var cmd = new UpdateDbCommand(s, db_conn);
                                 cmd.Run();
                             });
-
+p.Print("222");
 message_reader.Listen(GetEnvVarOrDefault("QUEUE", default_queue_name));
 
-Console.ReadLine();
+            while(true)
+            {
+                Thread.Sleep(1000);
+            }  
 
 
 string GetEnvVarOrDefault(in string envvar, in string default_val)

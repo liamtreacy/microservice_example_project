@@ -14,6 +14,8 @@ public class MessageReader
 
     public MessageReader(string host_name, OnMsgReceivedDelegate _onMsgRecv)
     {
+        var p = new Printer();
+        p.Print(host_name);
         factory = new ConnectionFactory
         {
             HostName = host_name,

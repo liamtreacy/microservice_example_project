@@ -1,6 +1,10 @@
 Progress (DBS):
 
 
+20/10
+docker-compose brings up everything. The DBPopulator exits early (todo investigate) but if restarted, it reads the incoming queue and updates the db with the values (confirmed). Woohoo.
+
+
 
 TODO 19/10
 

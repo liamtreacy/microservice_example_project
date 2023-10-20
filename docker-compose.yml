@@ -29,15 +29,22 @@ services:
     networks:
       - network
 
-  dbservice:
+  dbpopulator:
     build:
-      context: ./DBService/DBService
-
-    ports:
-      - 8080:80
+      context: ./DbPopulator
+    
+    environment:
+     - HOSTDB=mongo
+     - DB=my_db
+     - DBUSER=my_user
+     - DBPASS=my_password
+     - DBCOLLECTION=lottery_collection
+     - HOSTMSG=rabbitmq
+     - QUEUE=lottery_results
 
     depends_on:
       - rabbitmq
+      - mongo
     networks:
       - network
 

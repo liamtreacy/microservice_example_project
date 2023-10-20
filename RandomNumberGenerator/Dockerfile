@@ -5,7 +5,7 @@ FROM python:3.8-slim-buster
 ENV DELAY_LOOP_SECONDS=5
 ENV LOWER_BOUND=1
 ENV UPPER_BOUND=100
-ENV PUBLISH_QUEUE=random_numbers_queue
+ENV PUBLISH_QUEUE=lottery_results
 
 
 WORKDIR /app
