@@ -7,10 +7,6 @@ The generated numbers will be sent as rabbit messages, and consumed by the dbpop
 
 - remove the sleep from the DbPopulator and back off attempting to connect until rabbitmq broker is up and running
 
-- Remove the DBService folder
-
-- Remove build.sh
-
 - Code tidy up of DbPopulator
 
 - Change the message to be a lottery result, and the db entry to reflect that.
