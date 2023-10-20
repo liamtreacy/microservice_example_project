@@ -5,9 +5,8 @@ string default_msg_provider_host_name = "localhost";
 string default_db_host_name = "localhost";
 string default_queue_name = "random_numbers_queue";
 
-//GetEnvVarOrDefault("HOSTDB", default_db_host_name, out db_host_name);
-
-var db_conn = new DbConnection(GetEnvVarOrDefault("DBUSER", ""),
+var db_conn = new DbConnection(GetEnvVarOrDefault("HOSTDB", default_db_host_name),
+                    GetEnvVarOrDefault("DBUSER", ""),
                     GetEnvVarOrDefault("DBPASS", ""), 
                     GetEnvVarOrDefault("DB", ""), 
                     GetEnvVarOrDefault("DBCOLLECTION", ""));
