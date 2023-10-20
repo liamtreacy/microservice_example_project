@@ -48,7 +48,7 @@ services:
    ports:
      - "27017:27017"
    environment:
-     - MONGO_INITDB_DATABASE=pastime
+     - MONGO_INITDB_DATABASE=my_db
      - MONGO_INITDB_ROOT_USERNAME=root
      - MONGO_INITDB_ROOT_PASSWORD=root_password
    volumes:

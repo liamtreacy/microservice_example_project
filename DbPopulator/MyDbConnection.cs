@@ -19,13 +19,18 @@ public class MyDbConnection : IMyDbConn
         collection_name = _collection_name;
         host_name = _host_name;
 
-        client = new MongoClient($"mongodb://{user}:{pass}@{host_name}:27017?authSource={db}");
+        var connStr = $"mongodb://{user}:{pass}@{host_name}:27017?authSource={db}";
+
+        var p = new Printer();
+        p.Print(connStr);
+
+        client = new MongoClient(connStr);
 
         var database = client.GetDatabase(db);
         _collection = database.GetCollection<BsonDocument>(collection_name);
     }
 
-    public void insertNumber(int n)
+    public void InsertNumber(int n)
     {
         var document = new BsonDocument
         {
@@ -45,7 +50,7 @@ public class MyDbConnection : IMyDbConn
         }
         catch (Exception e)
         {
-            p.Print("Exception caught: {e}");
+            p.Print($"Exception caught: {e}");
         }
         finally
         {

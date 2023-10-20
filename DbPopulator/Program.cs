@@ -6,16 +6,16 @@ string default_db_host_name = "localhost";
 string default_queue_name = "random_numbers_queue";
 
 var db_conn = new MyDbConnection(GetEnvVarOrDefault("HOSTDB", default_db_host_name),
+                    GetEnvVarOrDefault("DB", "my_db"),   
                     GetEnvVarOrDefault("DBUSER", "my_user"),
-                    GetEnvVarOrDefault("DBPASS", "my_password"), 
-                    GetEnvVarOrDefault("DB", "my_db"), 
+                    GetEnvVarOrDefault("DBPASS", "my_password"),
                     GetEnvVarOrDefault("DBCOLLECTION", "my_collection"));
 
 // Establish rabbit connection
 var message_reader = new MessageReader(
             GetEnvVarOrDefault("HOSTMSG",default_msg_provider_host_name), 
                             (string s) => {
-                                var cmd = new UpdateDbCommand(s);
+                                var cmd = new UpdateDbCommand(s, db_conn);
                                 cmd.Run();
                             });
 

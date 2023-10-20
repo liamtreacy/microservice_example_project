@@ -1,4 +1,4 @@
 public interface IMyDbConn
 {
-    public void insertNumber(int n);
+    public void InsertNumber(int n);
 }
