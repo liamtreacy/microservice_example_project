@@ -1,9 +1,5 @@
 public class UpdateDbCommand
 {
-    public static string Db;
-    public static string User;
-    public static string Password;
-
     private string message;
 
     public UpdateDbCommand(string _message)

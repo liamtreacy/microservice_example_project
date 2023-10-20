@@ -13,9 +13,15 @@ GetEnvVarOrDefault("HOSTMSG",default_msg_provider_host_name, out msg_provider_ho
 GetEnvVarOrDefault("QUEUE", default_queue_name, out queue_name);
 GetEnvVarOrDefault("HOSTDB", default_db_host_name, out db_host_name);
 
-GetEnvVarOrDefault("DBUSER", "", out UpdateDbCommand.User);
-GetEnvVarOrDefault("DBPASS", "", out UpdateDbCommand.Password);
-GetEnvVarOrDefault("DB", "", out UpdateDbCommand.Db);
+string db;
+string user;
+string pass;
+
+GetEnvVarOrDefault("DBUSER", "", out db);
+GetEnvVarOrDefault("DBPASS", "", out user);
+GetEnvVarOrDefault("DB", "", out pass);
+
+var db_conn = new DbConnection(db, user, pass);
 
 
 // Establish rabbit connection
