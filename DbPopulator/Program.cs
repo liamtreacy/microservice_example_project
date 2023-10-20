@@ -16,7 +16,10 @@ var queue_name = "random_numbers_queue";//Environment.GetEnvironmentVariable("QU
 
 // Establish rabbit connection
 
-var message_reader = new MessageReader(host_name);
+var message_reader = new MessageReader(host_name, 
+                            (string s) => {
+                                p.Print($"LAMBDA: {s}");
+                            });
 
 message_reader.Listen(queue_name);
 

@@ -3,13 +3,16 @@ using System.ComponentModel;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
+public delegate void OnMsgReceivedDelegate(string s);
+
 public class MessageReader
 {
     private ConnectionFactory factory;
     private IConnection connection;
-    private Printer p;
 
-    public MessageReader(string host_name)
+    private OnMsgReceivedDelegate onMsgRecv;
+
+    public MessageReader(string host_name, OnMsgReceivedDelegate _onMsgRecv)
     {
         factory = new ConnectionFactory
         {
@@ -20,7 +23,7 @@ public class MessageReader
         };
         connection = factory.CreateConnection();
 
-        p = new Printer();
+        onMsgRecv = _onMsgRecv;
     }
 
     public void Listen(string queue_name)
@@ -42,7 +45,7 @@ public class MessageReader
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
 
-                p.Print($"RECV: {message}");
+                onMsgRecv(message);
             };
 
             channel.BasicConsume(queue: queue_name,
