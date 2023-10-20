@@ -11,8 +11,6 @@ public class UpdateDbCommand
 
     public void Run()
     {
-        var p = new Printer();
-        //p.Print($"LAMBDA: {message}");
-        db_conn.InsertNumber(int.Parse(message));
+        db_conn.InsertResult(message);
     }
 }

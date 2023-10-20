@@ -30,11 +30,11 @@ public class MyDbConnection : IMyDbConn
         _collection = database.GetCollection<BsonDocument>(collection_name);
     }
 
-    public void InsertNumber(int n)
+    public void InsertResult(string s)
     {
         var document = new BsonDocument
         {
-            { "brand_new_key", n }
+            { "result", s }
         };
 
         InsertDocumentAsync(document);
@@ -51,10 +51,6 @@ public class MyDbConnection : IMyDbConn
         catch (Exception e)
         {
             p.Print($"Exception caught: {e}");
-        }
-        finally
-        {
-            p.Print("Finally block...");
         }
     }
 }
