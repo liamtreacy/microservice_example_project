@@ -4,8 +4,7 @@ import os
 
 import pika
 
-from rng import generate_random_number
-
+from rng import generate_random_number, generate_lottery_result
 
 if __name__ == '__main__':
 
@@ -16,7 +15,7 @@ if __name__ == '__main__':
 
     # Sleep until the rabbitmq is up and running
     #TODO replace this with a proper callback guard
-    time.sleep(20)
+    time.sleep(15)
 
     connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
     channel = connection.channel()
@@ -24,13 +23,12 @@ if __name__ == '__main__':
     channel.queue_declare(queue=publish_queue)
 
     while True:
-        rnd = generate_random_number(lower, upper)
-        rnd = str(rnd)
+        result = generate_lottery_result(lower, upper)
 
         channel.basic_publish(exchange='',
                           routing_key=publish_queue,
-                          body=rnd)
-        print(" [x] Sent " + rnd)
+                          body=result)
+        print("RNG Sending:: " + result)
         time.sleep(loop_interval_secs)
 
     connection.close()
