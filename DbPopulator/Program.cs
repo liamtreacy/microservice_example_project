@@ -5,11 +5,11 @@ string default_msg_provider_host_name = "localhost";
 string default_db_host_name = "localhost";
 string default_queue_name = "random_numbers_queue";
 
-var db_conn = new DbConnection(GetEnvVarOrDefault("HOSTDB", default_db_host_name),
-                    GetEnvVarOrDefault("DBUSER", ""),
-                    GetEnvVarOrDefault("DBPASS", ""), 
-                    GetEnvVarOrDefault("DB", ""), 
-                    GetEnvVarOrDefault("DBCOLLECTION", ""));
+var db_conn = new MyDbConnection(GetEnvVarOrDefault("HOSTDB", default_db_host_name),
+                    GetEnvVarOrDefault("DBUSER", "my_user"),
+                    GetEnvVarOrDefault("DBPASS", "my_password"), 
+                    GetEnvVarOrDefault("DB", "my_db"), 
+                    GetEnvVarOrDefault("DBCOLLECTION", "my_collection"));
 
 // Establish rabbit connection
 var message_reader = new MessageReader(
