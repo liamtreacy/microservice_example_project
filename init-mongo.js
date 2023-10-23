@@ -9,4 +9,13 @@ db.createUser({
   ]
 })
 
-db. pastime.insertOne({"first_key" : "first_val"})
+db.createUser({
+  user: 'my_reader',
+  pwd: 'my_password',
+  roles: [
+    {
+      role: 'read',
+      db: 'my_db'
+    }
+  ]
+})
