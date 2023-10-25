@@ -50,8 +50,8 @@ services:
 
   latestresult:
     build:
-      context: ./LatestResult/myapp
-
+      context: ./LatestResult/go_server
+    
     ports:
       - '8080:8080'
 
