@@ -22,8 +22,6 @@ func main() {
 	serverAPI := options.ServerAPI(options.ServerAPIVersion1)
 	opts := options.Client().ApplyURI(uri).SetServerAPIOptions(serverAPI)
 	
-
-	// Create a new client and connect to the server
 	client, err := mongo.Connect(context.TODO(), opts)
 
 	if err != nil {
@@ -35,13 +33,11 @@ func main() {
 		}
 	}()
 
-	fmt.Println("You successfully connected to MongoDB!")
+	fmt.Println("Connected to MongoDB!")
 	collection := client.Database("my_db").Collection("lottery_collection")
 
-	//filter := bson.D{{"latest", "1, 2, 3"}}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        //fmt.Fprintf(w, "Hello, World!")
 		var result bson.M
 		options := options.FindOne().SetSort(bson.M{"$natural": -1})
 
