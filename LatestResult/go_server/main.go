@@ -14,7 +14,7 @@ import (
 const uri = "mongodb://my_reader:my_password@mongo:27017/?authSource=my_db"
 
 type LotteryResult struct {
-    Numbers []int
+    Numbers string
 }
 
 func main() {
@@ -42,15 +42,15 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         //fmt.Fprintf(w, "Hello, World!")
-		var result LotteryResult
+		var result bson.M
+		options := options.FindOne().SetSort(bson.M{"$natural": -1})
 
-		err = collection.FindOne(context.TODO(), bson.D{}).Decode(&result)
+		err = collection.FindOne(context.TODO(), bson.D{}, options).Decode(&result)
 		if err != nil {
-			//log.
 			log.Fatal(err)
 		}
 
-		fmt.Fprintf(w, "Found a single document: %+v\n", result)
+		fmt.Fprintf(w, "Latest entry: %+v\n", result)
     })
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
